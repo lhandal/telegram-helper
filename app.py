@@ -26,7 +26,7 @@ def respond():
     # now just send the message back
     # notice how we specify the chat and the msg we reply to
     bot.sendMessage(chat_id=chat_id, text=response, reply_to_message_id=msg_id)
-return 'ok'
+    return 'ok'
 
 @app.route('/setwebhook', methods=['GET', 'POST'])
 def set_webhook():
