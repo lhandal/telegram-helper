@@ -5,7 +5,7 @@ def get_response(msg):
     or a complex LSTM network that generate appropriate answer
     """
 
-    if msg.lower() == 'hola'
+    if msg.lower() == 'hola':
         return 'Hola!'
     else:
         return "......"
