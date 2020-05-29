@@ -20,7 +20,7 @@ def respond():
     msg_id = update.message.message_id
     # Telegram understands UTF-8, so encode text for unicode compatibility
     text = update.message.text.encode('utf-8').decode()
-    print("got text message :", text)
+    print("Got text message:", text)
     # here we call our super AI
     response = get_response(text)
     # now just send the message back
@@ -35,13 +35,13 @@ def set_webhook():
     s = bot.setWebhook('{URL}{HOOK}'.format(URL=URL, HOOK=TOKEN))
     # something to let us know things work
     if s:
-        return "webhook setup ok"
+        return "Webhook setup ok!"
     else:
-        return "webhook setup failed"
+        return "Webhook setup failed..."
 
 @app.route('/')
 def index():
-    return '.'
+    return 'App is running!'
 
 if __name__ == '__main__':
     # note the threaded arg which allow

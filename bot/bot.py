@@ -4,4 +4,8 @@ def get_response(msg):
     could be a very basic simple response like "معلش"
     or a complex LSTM network that generate appropriate answer
     """
-    return "معلش !"
+
+    if msg.lower() == 'hola'
+        return 'Hola!'
+    else:
+        return "......"
