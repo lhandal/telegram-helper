@@ -39,11 +39,11 @@ def set_webhook():
     else:
         return "webhook setup failed"
 
+@app.route('/')
+def index():
+    return '.'
+
 if __name__ == '__main__':
     # note the threaded arg which allow
     # your app to have more than one thread
     app.run(threaded=True)
-
-@app.route('/')
-def index():
-    return '.'
