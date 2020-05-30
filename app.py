@@ -11,7 +11,7 @@ global TOKEN
 global updater
 global Dispatcher
 
-updater = Updater("API KEY", use_context=True)
+updater = Updater(TOKEN, use_context=True)
 Dispatcher = updater.dispatcher
 TOKEN = bot_token
 bot = telegram.Bot(token=TOKEN)
