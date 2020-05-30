@@ -19,14 +19,10 @@ def parse_message(update):
 
 
 def get_response(msg, chat_id, msg_id, name, lastname):
-    """
-    you can place your mastermind AI here
-    could be a very basic simple response like "معلش"
-    or a complex LSTM network that generate appropriate answer
-    """
 
-    if msg.lower() in ['hola', 'juan', 'hi']:
-        text = f'Hello {name}! \n What can I do for you today?'
+    if any(word in msg.lower() for word in ['hola', 'juan', 'hi']):
+    # if msg.lower() in ['hola', 'juan', 'hi', 'juan?']:
+        text = f'Hello {name}! \nWhat can I do for you today?'
     else:
         text = "......"
 
