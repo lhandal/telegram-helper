@@ -8,6 +8,8 @@ from telegram.ext import Updater, CommandHandler
 
 global bot
 global TOKEN
+global updater
+global dispatcher
 
 updater = Updater("API KEY", use_context=True)
 dispatcher: Dispatcher = updater.dispatcher
