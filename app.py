@@ -41,7 +41,7 @@ def helper():
     dispatcher.add_handler(
         # it can accept all the telegram.ext.Handler, CommandHandler inherits Handler class
         # documentation: https://python-telegram-bot.readthedocs.io/en/latest/telegram.ext.commandhandler.html#telegram-ext-commandhandler
-        CommandHandler("hi", start))
+        CommandHandler("start", start))
 
     # starting polling updates from Telegram
     # documentation: https://python-telegram-bot.readthedocs.io/en/latest/telegram.ext.updater.html#telegram.ext.Updater.start_polling
