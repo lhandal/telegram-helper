@@ -3,6 +3,7 @@ import telegram
 from credentials import bot_token, bot_username, URL
 from bot import *
 from helper_functions import *
+from helper_functions import *
 
 global bot
 global TOKEN
