@@ -6,6 +6,7 @@ def get_response(msg):
     """
 
     if msg.lower() == 'hola':
-        return 'Hola!'
+        text = 'Hola!'
     else:
-        return "......"
+        text = "......"
+    bot.sendMessage(chat_id=chat_id, text=text, reply_to_message_id=msg_id)
