@@ -18,10 +18,15 @@ def hello(update, context):
         'Hello {}'.format(update.message.from_user.first_name))
 
 @app.route('/{}'.format(TOKEN), methods=['POST'])
-def respond():
+def respond(update):
     # Retrieve the message in JSON and then transform it to Telegram object
     # update = telegram.Update.de_json(request.get_json(force=True), bot)
     # incoming_message, msg_id, chat_id, name, lastname = parse_message(update)
+
+    def start(update, text):
+        # update is the update object. It is of type pytgbot.api_types.receivable.updates.Update
+        # text is the text after the command. Can be empty. Type is str.
+        return HTMLMessage("<b>Hello!</b> Thanks for using @" + app.username + "!")
 
 
     updater = Updater(TOKEN, use_context=True)
