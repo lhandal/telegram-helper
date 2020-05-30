@@ -14,12 +14,13 @@ app = Flask(__name__)
 def respond():
     # retrieve the message in JSON and then transform it to Telegram object
     update = telegram.Update.de_json(request.get_json(force=True), bot)
-    chat_id = update.message.chat.id
+    name, lastname = update.message.chat.id
+    chat_id = update.message.chat.first_name, update.message.chat.last_name
     msg_id = update.message.message_id
     # Telegram understands UTF-8, so encode text for unicode compatibility
     incoming_message = update.message.text.encode('utf-8').decode()
     print("Got text message:", incoming_message)
-    get_response(incoming_message, chat_id, msg_id)
+    get_response(incoming_message, chat_id, msg_id, name, lastname)
     return 'ok'
 
 @app.route('/setwebhook', methods=['GET', 'POST'])

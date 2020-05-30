@@ -9,7 +9,7 @@ TOKEN = bot_token
 bot = telegram.Bot(token=TOKEN)
 
 
-def get_response(msg, chat_id, msg_id):
+def get_response(msg, chat_id, msg_id, name, lastname):
     """
     you can place your mastermind AI here
     could be a very basic simple response like "معلش"
@@ -17,7 +17,7 @@ def get_response(msg, chat_id, msg_id):
     """
 
     if msg.lower() == 'hola':
-        text = 'Hola!'
+        text = f'Hola {name}!'
     else:
         text = "......"
 
