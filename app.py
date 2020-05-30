@@ -18,17 +18,17 @@ def hello(update, context):
         'Hello {}'.format(update.message.from_user.first_name))
 
 @app.route('/{}'.format(TOKEN), methods=['POST'])
-# def respond():
+def respond():
     # Retrieve the message in JSON and then transform it to Telegram object
     # update = telegram.Update.de_json(request.get_json(force=True), bot)
     # incoming_message, msg_id, chat_id, name, lastname = parse_message(update)
 
 
-updater = Updater(TOKEN, use_context=True)
-updater.dispatcher.add_handler(CommandHandler('hello', hello))
-updater.start_polling()
-updater.idle()
-    #x
+    updater = Updater(TOKEN, use_context=True)
+    updater.dispatcher.add_handler(CommandHandler('hello', hello))
+    updater.start_polling()
+    updater.idle()
+
     # print("Got text message:", incoming_message)
     # get_response(incoming_message, chat_id, msg_id, name, lastname)
     # return 'ok'
