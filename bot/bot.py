@@ -1,10 +1,15 @@
 import telegram
 from bot.credentials import bot_token, bot_username, URL
+from telegram.ext import CommandHandler
+
 
 global bot
 global TOKEN
 TOKEN = bot_token
 bot = telegram.Bot(token=TOKEN)
+
+start_handler = CommandHandler('start', start)
+dispatcher.add_handler(start_handler)
 
 
 def get_response(msg, chat_id, msg_id):
