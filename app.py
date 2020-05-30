@@ -9,10 +9,10 @@ from telegram.ext import Updater, CommandHandler
 global bot
 global TOKEN
 global updater
-global dispatcher
+global Dispatcher
 
 updater = Updater("API KEY", use_context=True)
-dispatcher: Dispatcher = updater.dispatcher
+Dispatcher = updater.dispatcher
 TOKEN = bot_token
 bot = telegram.Bot(token=TOKEN)
 
