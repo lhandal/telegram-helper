@@ -1,6 +1,5 @@
 import telegram
 from bot.credentials import bot_token, bot_username, URL
-from bot.bot import get_response
 
 global bot
 global TOKEN
