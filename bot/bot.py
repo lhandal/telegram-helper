@@ -16,8 +16,8 @@ def get_response(msg, chat_id, msg_id, name, lastname):
     or a complex LSTM network that generate appropriate answer
     """
 
-    if msg.lower() == 'hola':
-        text = f'Hola {name}!'
+    if msg.lower() in ['hola', 'juan', 'hi']:
+        text = f'Hello {name}! \n What can I do for you today?'
     else:
         text = "......"
 
