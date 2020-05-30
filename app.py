@@ -14,19 +14,12 @@ app = Flask(__name__)
 def respond():
     # retrieve the message in JSON and then transform it to Telegram object
     update = telegram.Update.de_json(request.get_json(force=True), bot)
-    # get the chat_id to be able to respond to the same user
     chat_id = update.message.chat.id
-    # get the message id to be able to reply to this specific message
     msg_id = update.message.message_id
     # Telegram understands UTF-8, so encode text for unicode compatibility
     incoming_message = update.message.text.encode('utf-8').decode()
     print("Got text message:", incoming_message)
-    # here we call our super AI
-    # response = get_response(incoming_message)
-    get_response(incoming_message)
-    # now just send the message back
-    # notice how we specify the chat and the msg we reply to
-    # bot.sendMessage(chat_id=chat_id, text=response, reply_to_message_id=msg_id)
+    get_response(incoming_message, chat_id, msg_id)
     return 'ok'
 
 @app.route('/setwebhook', methods=['GET', 'POST'])
