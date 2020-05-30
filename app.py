@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 @app.route('/{}'.format(TOKEN), methods=['POST'])
 def helper():
-    print(request)
+    # print(request)
     # Retrieve the message in JSON and then transform it to Telegram object
     update = telegram.Update.de_json(request.get_json(force=True), bot)
     incoming_message, msg_id, chat_id, name, lastname = parse_message(update)
