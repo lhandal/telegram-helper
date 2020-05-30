@@ -18,7 +18,7 @@ def hello(update, context):
         'Hello {}'.format(update.message.from_user.first_name))
 
 @app.route('/{}'.format(TOKEN), methods=['POST'])
-def respond():
+# def respond():
     # Retrieve the message in JSON and then transform it to Telegram object
     # update = telegram.Update.de_json(request.get_json(force=True), bot)
     # incoming_message, msg_id, chat_id, name, lastname = parse_message(update)
