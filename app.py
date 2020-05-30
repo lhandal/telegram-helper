@@ -15,11 +15,11 @@ from telegram.bot import Bot
 
 global bot
 global TOKEN
-global updater
-global Dispatcher
-
-updater = Updater(TOKEN, use_context=True)
-Dispatcher = updater.dispatcher
+# global updater
+# global Dispatcher
+#
+# updater = Updater(TOKEN, use_context=True)
+# Dispatcher = updater.dispatcher
 TOKEN = bot_token
 bot = telegram.Bot(token=TOKEN)
 
