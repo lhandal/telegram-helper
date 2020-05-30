@@ -1,3 +1,6 @@
+# worker: python script.py --> Procfile
+# heroku ps:scale worker=1 --> CLI
+
 from telegram.ext import Updater, InlineQueryHandler, CommandHandler
 import requests
 import re
@@ -20,6 +23,7 @@ def bop(bot, update):
     url = get_image_url()
     chat_id = update.message.chat_id
     bot.send_photo(chat_id=chat_id, photo=url)
+    print(update)
 
 def main():
     updater = Updater(bot_token)
