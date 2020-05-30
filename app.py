@@ -5,6 +5,13 @@ from bot import *
 from helper_functions import *
 from telegram.ext import Updater, CommandHandler
 
+from telegram.ext.commandhandler import CommandHandler
+from telegram.ext.updater import Updater
+from telegram.ext.dispatcher import Dispatcher
+from telegram.update import Update
+from telegram.ext.callbackcontext import CallbackContext
+from telegram.bot import Bot
+
 
 global bot
 global TOKEN
@@ -20,14 +27,38 @@ app = Flask(__name__)
 
 @app.route('/{}'.format(TOKEN), methods=['POST'])
 def helper():
-    # Retrieve the message in JSON and then transform it to Telegram object
-    update = telegram.Update.de_json(request.get_json(force=True), bot)
-    print(update.message)
-    incoming_message, msg_id, chat_id, name, lastname = parse_message(update)
+    def start(update=Update, context=CallbackContext):
+        """
+        the callback for handling start command
+        """
+        # getting the bot from context
+        # documentation: https://python-telegram-bot.readthedocs.io/en/latest/telegram.bot.html#telegram-bot
+        bot: Bot = context.bot
 
-    print("Got text message:", incoming_message)
-    get_response(incoming_message, chat_id, msg_id, name, lastname)
-    return 'ok'
+        # sending message to the chat from where it has received the message
+        # documentation: https://python-telegram-bot.readthedocs.io/en/latest/telegram.bot.html#telegram.Bot.send_message
+        bot.send_message(chat_id=update.effective_chat.id,
+                         text="You have just entered start command")
+
+    # register a handler (here command handler)
+    # documentation: https://python-telegram-bot.readthedocs.io/en/latest/telegram.ext.dispatcher.html#telegram.ext.Dispatcher.add_handler
+    dispatcher.add_handler(
+        # it can accept all the telegram.ext.Handler, CommandHandler inherits Handler class
+        # documentation: https://python-telegram-bot.readthedocs.io/en/latest/telegram.ext.commandhandler.html#telegram-ext-commandhandler
+        CommandHandler("start", start))
+
+    # starting polling updates from Telegram
+    # documentation: https://python-telegram-bot.readthedocs.io/en/latest/telegram.ext.updater.html#telegram.ext.Updater.start_polling
+    updater.start_polling()
+
+    # Retrieve the message in JSON and then transform it to Telegram object
+    # update = telegram.Update.de_json(request.get_json(force=True), bot)
+    # print(update.message)
+    # incoming_message, msg_id, chat_id, name, lastname = parse_message(update)
+    #
+    # print("Got text message:", incoming_message)
+    # get_response(incoming_message, chat_id, msg_id, name, lastname)
+    # return 'ok'
 
 @app.route('/setwebhook', methods=['GET', 'POST'])
 def set_webhook():
