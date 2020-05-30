@@ -11,7 +11,7 @@ bot = telegram.Bot(token=TOKEN)
 def parse_message(update):
     # Payload vars
     chat_id = update.message.chat.id
-    name, lastname = update.user.first_name, update.user.last_name
+    name, lastname = update.User.first_name, update.User.last_name
     msg_id = update.message.message_id
     incoming_message = normalize_text(update.message.text.encode('utf-8').decode())
     return incoming_message, msg_id, chat_id, name, lastname
