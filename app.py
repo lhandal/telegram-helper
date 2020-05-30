@@ -13,30 +13,21 @@ bot = telegram.Bot(token=TOKEN)
 
 app = Flask(__name__)
 
-def hello(update, context):
-    update.message.reply_text(
-        'Hello {}'.format(update.message.from_user.first_name))
-
 @app.route('/{}'.format(TOKEN), methods=['POST'])
-def respond(update):
+def respond(request):
+    print(request)
     # Retrieve the message in JSON and then transform it to Telegram object
-    # update = telegram.Update.de_json(request.get_json(force=True), bot)
-    # incoming_message, msg_id, chat_id, name, lastname = parse_message(update)
+    update = telegram.Update.de_json(request.get_json(force=True), bot)
+    incoming_message, msg_id, chat_id, name, lastname = parse_message(update)
 
-    def start(update, text):
-        # update is the update object. It is of type pytgbot.api_types.receivable.updates.Update
-        # text is the text after the command. Can be empty. Type is str.
-        return HTMLMessage("<b>Hello!</b> Thanks for using @" + app.username + "!")
+    # updater = Updater(TOKEN, use_context=True)
+    # updater.dispatcher.add_handler(CommandHandler('hello', hello))
+    # updater.start_polling()
+    # updater.idle()
 
-
-    updater = Updater(TOKEN, use_context=True)
-    updater.dispatcher.add_handler(CommandHandler('hello', hello))
-    updater.start_polling()
-    updater.idle()
-
-    # print("Got text message:", incoming_message)
-    # get_response(incoming_message, chat_id, msg_id, name, lastname)
-    # return 'ok'
+    print("Got text message:", incoming_message)
+    get_response(incoming_message, chat_id, msg_id, name, lastname)
+    return 'ok'
 
 @app.route('/setwebhook', methods=['GET', 'POST'])
 def set_webhook():
