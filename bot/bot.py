@@ -6,9 +6,6 @@ global TOKEN
 TOKEN = bot_token
 bot = telegram.Bot(token=TOKEN)
 
-bot.sendMessage(chat_id=chat_id, text=response)#, reply_to_message_id=msg_id)
-
-
 
 def get_response(msg, chat_id, msg_id):
     """
