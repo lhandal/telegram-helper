@@ -1,8 +1,7 @@
 import telegram
 from credentials import bot_token, bot_username, URL
-from telegram.ext import CommandHandler
+from telegram.ext import CommandHandler, Updater
 from helper_functions import *
-
 
 global bot
 global TOKEN
@@ -22,7 +21,7 @@ def get_response(msg, chat_id, msg_id, name, lastname):
 
     if any(word in msg.lower() for word in ['hola', 'juan', 'hi']):
     # if msg.lower() in ['hola', 'juan', 'hi', 'juan?']:
-        text = f'Hello {name}! \nWhat can I do for you today?'
+        text = f'Hello {name}! \nWhat can I do for you? 🤵🏻'
     else:
         text = "......"
 
