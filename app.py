@@ -17,7 +17,7 @@ app = Flask(__name__)
 def helper():
     print(telegram.Update)
     print(request.get_json(force=True))
-    print(telegram.User)
+    print(telegram.User.full_name)
     # Retrieve the message in JSON and then transform it to Telegram object
     update = telegram.Update.de_json(request.get_json(force=True), bot)
     print(update)
