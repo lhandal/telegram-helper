@@ -19,7 +19,7 @@ global updater
 global Dispatcher
 
 updater = Updater(TOKEN, use_context=True)
-dispatcher = updater.dispatcher
+Dispatcher = updater.dispatcher
 TOKEN = bot_token
 bot = telegram.Bot(token=TOKEN)
 
@@ -27,27 +27,39 @@ app = Flask(__name__)
 
 @app.route('/{}'.format(TOKEN), methods=['POST'])
 def helper():
-    def start(update=Update, context=CallbackContext):
-        """
-        the callback for handling start command
-        """
-        # getting the bot from context
-        bot: Bot = context.bot
+    from telegram.ext import Updater, InlineQueryHandler, CommandHandler
+    import requests
+    import re
+    from credentials import bot_token
 
-        # sending message to the chat from where it has received the message
-        bot.send_message(chat_id=update.effective_chat.id,
-                         text="You have just entered start command")
-    # register a handler (here command handler)
-    dispatcher.add_handler(
-        # it can accept all the telegram.ext.Handler, CommandHandler inherits Handler class
-        # documentation: https://python-telegram-bot.readthedocs.io/en/latest/telegram.ext.commandhandler.html#telegram-ext-commandhandler
-        CommandHandler("start", start))
+    def get_url():
+        contents = requests.get('https://random.dog/woof.json').json()
+        url = contents['url']
+        return url
 
-    # starting polling updates from Telegram
-    # documentation: https://python-telegram-bot.readthedocs.io/en/latest/telegram.ext.updater.html#telegram.ext.Updater.start_polling
-    updater.start_polling()
+    def get_image_url():
+        allowed_extension = ['jpg', 'jpeg', 'png']
+        file_extension = ''
+        while file_extension not in allowed_extension:
+            url = get_url()
+            file_extension = re.search("([^.]*)$", url).group(1).lower()
+        return url
 
-    # Retrieve the message in JSON and then transform it to Telegram object
+    def bop(bot, update):
+        url = get_image_url()
+        chat_id = update.message.chat_id
+        bot.send_photo(chat_id=chat_id, photo=url)
+
+    def main():
+        updater = Updater('YOUR_TOKEN')
+        dp = updater.dispatcher
+        dp.add_handler(CommandHandler('bop', bop))
+        updater.start_polling()
+        updater.idle()
+
+    main()
+
+    # # Retrieve the message in JSON and then transform it to Telegram object
     # update = telegram.Update.de_json(request.get_json(force=True), bot)
     # print(update.message)
     # incoming_message, msg_id, chat_id, name, lastname = parse_message(update)
@@ -75,3 +87,4 @@ if __name__ == '__main__':
     # note the threaded arg which allow
     # your app to have more than one thread
     app.run(threaded=True)
+    main()
