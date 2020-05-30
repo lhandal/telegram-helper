@@ -68,16 +68,16 @@ def helper():
     # get_response(incoming_message, chat_id, msg_id, name, lastname)
     # return 'ok'
 
-@app.route('/setwebhook', methods=['GET', 'POST'])
-def set_webhook():
-    # we use the bot object to link the bot to our app which live
-    # in the link provided by URL
-    s = bot.setWebhook('{URL}{HOOK}'.format(URL=URL, HOOK=TOKEN))
-    # something to let us know things work
-    if s:
-        return "Webhook setup ok!"
-    else:
-        return "Webhook setup failed..."
+# @app.route('/setwebhook', methods=['GET', 'POST'])
+# def set_webhook():
+#     # we use the bot object to link the bot to our app which live
+#     # in the link provided by URL
+#     s = bot.setWebhook('{URL}{HOOK}'.format(URL=URL, HOOK=TOKEN))
+#     # something to let us know things work
+#     if s:
+#         return "Webhook setup ok!"
+#     else:
+#         return "Webhook setup failed..."
 
 @app.route('/')
 def index():
