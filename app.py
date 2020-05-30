@@ -19,7 +19,7 @@ global updater
 global Dispatcher
 
 updater = Updater(TOKEN, use_context=True)
-Dispatcher = updater.dispatcher
+dispatcher = updater.dispatcher
 TOKEN = bot_token
 bot = telegram.Bot(token=TOKEN)
 
