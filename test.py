@@ -13,7 +13,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger(__name__)
 
-SEARCH_TYPE, TYPE, CHOSEN, ROAST = range(4)
+SEARCH_TYPE, TYPE, CHOSE, SENT = range(4)
 
 
 def start(update, context):
