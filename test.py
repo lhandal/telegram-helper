@@ -129,21 +129,27 @@ def choose(update, context):
 
 def sent(update, context):
     user = update.message.from_user
-    global chosen
-    chosen = int(re.findall(r'\d+', update.message.text)[0]) - 1
-    logger.info(f"{user.first_name} {user.last_name} selected option {chosen} from list.")
-    print(s_type, s_value, chosen)
-    url = get_book_link(search_book(by=s_type, value=s_value)[chosen])
 
-    update.message.reply_text(f'Here you go {user.first_name}, here is your link!\n\n{url}')
+    if update.message.text != '/cancel':
+        global chosen
+        chosen = int(re.findall(r'\d+', update.message.text)[0]) - 1
+        logger.info(f"{user.first_name} {user.last_name} selected option {chosen} from list.")
+        print(s_type, s_value, chosen)
+        url = get_book_link(search_book(by=s_type, value=s_value)[chosen])
+        update.message.reply_text(f'Here you go {user.first_name}, here is your link!\n\n{url}\n\nType /cancel to cancel search.')
+        return ConversationHandler.END
+    else:
+        logger.info(f"{user.first_name} {user.last_name} canceled the conversation.")
+        update.message.reply_text('Bye! Let me know if you need anything else!',
+                                  reply_markup=ReplyKeyboardRemove())
+        return ConversationHandler.END
 
-    return ConversationHandler.END
 
 
 def cancel(update, context):
     user = update.message.from_user
-    logger.info(f"User {user.first_name} {user.last_name} canceled the conversation.")
-    update.message.reply_text('Bye! Let me know if you need anything else!.',
+    logger.info(f"{user.first_name} {user.last_name} canceled the conversation.")
+    update.message.reply_text('Bye! Let me know if you need anything else!',
                               reply_markup=ReplyKeyboardRemove())
 
     return ConversationHandler.END
