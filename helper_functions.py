@@ -68,7 +68,7 @@ def get_book_link(user_pick):
     return url
 
 def get_roast():
-    if randint(0,1) == 0:
+    if randint(0,3) == 0:
         url ='http://private-anon-3c099af7c5-insultgenerator.apiary-mock.com/compliments'
         const = 'compliments'
         emoji = '😍'
