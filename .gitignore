@@ -135,3 +135,6 @@ dmypy.json
 .DS_Store
 .idea/
 
+# Some scripts
+conv.py
+
