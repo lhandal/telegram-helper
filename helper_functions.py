@@ -53,9 +53,12 @@ def search_book(by, value):
 
 def filter_results(search_results):
     filtered_results = []
-    wanted_keys = list(search_results[0].keys())[1:9]
-    for i in range(len(search_results)):
-        filtered_results.append({k: v for k, v in search_results[i].items() if k in wanted_keys})
+    try:
+        wanted_keys = list(search_results[0].keys())[1:9]
+        for i in range(len(search_results)):
+            filtered_results.append({k: v for k, v in search_results[i].items() if k in wanted_keys})
+    except IndexError:
+        pass
     return filtered_results
 
 def get_book_link(user_pick):

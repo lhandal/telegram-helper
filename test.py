@@ -102,7 +102,7 @@ def choose(update, context):
     user = update.message.from_user
     logger.info(f"Query of {user.first_name} {user.last_name}: {update.message.text}")
     results = filter_results(search_book(by=s_type, value=update.message.text))
-    if len(results) >0:
+    if len(results) > 0:
         global s_value
         s_value = update.message.text
         update.message.reply_text(f'I got these results for {s_value}, which of the following do you want?\nTell me the result number you want to download.')
@@ -123,14 +123,14 @@ def choose(update, context):
             if n == 25:
                 break
         update.message.reply_text(f'''Which of those do you like?\n
-    Tell me the result number you want to download!\n
-    Type /cancel to cancel search.''')
+Tell me the *result number* you want to download!\n
+Type /cancel to cancel search.''', parse_mode=ParseMode.MARKDOWN)
         return SENT
     else:
         logger.info(f"{user.first_name} {user.last_name}'s query got no results.")
-        update.message.reply_text('Your query got 0 results, please start again...',
-                                  reply_markup=ReplyKeyboardRemove())
-        return ConversationHandler.END
+        update.message.reply_text('Your query got 0 results, please try again... \n\nSend *another query* or /cancel to cancel search.',
+                                  reply_markup=ReplyKeyboardRemove(), parse_mode=ParseMode.MARKDOWN)
+        return CHOOSE
 
 
 def sent(update, context):
