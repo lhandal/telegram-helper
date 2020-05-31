@@ -53,7 +53,7 @@ def roast(update, context):
     user = update.message.from_user
     photo_file = update.message.photo[-1].get_file()
     photo_file.download('user_photo.jpg')
-    logger.info(f"{user.first_name} {user.last_name} sent: 'user_photo.jpg')
+    logger.info(f"{user.first_name} {user.last_name} sent: 'user_photo.jpg'")
     roast = get_roast()
     update.message.reply_text(f'{user.first_name}, {roast}')
 
@@ -92,7 +92,7 @@ def search_type(update, context):
     user = update.message.from_user
     update.message.reply_text(f'Thank you!\nPlease type the *{update.message.text.lower()}* then.',
                               parse_mode=ParseMode.MARKDOWN)
-    logger.info(f"Search type of {user.first_name} {user.last_name} {update.message.text})
+    logger.info(f"Search type of {user.first_name} {user.last_name} {update.message.text}")
     global s_type
     s_type = update.message.text.lower()
     return TYPE
@@ -100,7 +100,7 @@ def search_type(update, context):
 
 def choose(update, context):
     user = update.message.from_user
-    logger.info(f"Query of {user.first_name} {user.last_name}: {update.message.text})
+    logger.info(f"Query of {user.first_name} {user.last_name}: {update.message.text}")
     results = filter_results(search_book(by=s_type, value=update.message.text))
     global s_value
     s_value = update.message.text
