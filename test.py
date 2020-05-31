@@ -102,31 +102,35 @@ def choose(update, context):
     user = update.message.from_user
     logger.info(f"Query of {user.first_name} {user.last_name}: {update.message.text}")
     results = filter_results(search_book(by=s_type, value=update.message.text))
-    global s_value
-    s_value = update.message.text
-    update.message.reply_text(f'I got these results for {s_value}, which of the following do you want?\nTell me the result number you want to download.')
-    n = 1
-    for result in results:
-        text = f"""*Result {n}*
-    Title: {result['Title']}
-    Author: {result['Author']}
-    Publisher: {result['Publisher']}
-    Year: {result['Year']}
-    Language: {result['Language']}
-    Pages: {result['Pages']}
-    Size: {result['Size']}
-    Extension: {result['Extension']}"""
-        print(text)
-        n += 1
-        update.message.reply_text(text, parse_mode=ParseMode.MARKDOWN)
-        if n == 25:
-            break
-    update.message.reply_text(f'''Which of those do you like?\n
-Tell me the result number you want to download!\n
-Type /cancel to cancel search.''')
-
-
-    return SENT
+    if len(results) >0:
+        global s_value
+        s_value = update.message.text
+        update.message.reply_text(f'I got these results for {s_value}, which of the following do you want?\nTell me the result number you want to download.')
+        n = 1
+        for result in results:
+            text = f"""*Result {n}*
+        Title: {result['Title']}
+        Author: {result['Author']}
+        Publisher: {result['Publisher']}
+        Year: {result['Year']}
+        Language: {result['Language']}
+        Pages: {result['Pages']}
+        Size: {result['Size']}
+        Extension: {result['Extension']}"""
+            print(text)
+            n += 1
+            update.message.reply_text(text, parse_mode=ParseMode.MARKDOWN)
+            if n == 25:
+                break
+        update.message.reply_text(f'''Which of those do you like?\n
+    Tell me the result number you want to download!\n
+    Type /cancel to cancel search.''')
+        return SENT
+    else:
+        logger.info(f"{user.first_name} {user.last_name}'s query got no results.")
+        update.message.reply_text('Your query got 0 results, please start again...',
+                                  reply_markup=ReplyKeyboardRemove())
+        return ConversationHandler.END
 
 
 def sent(update, context):
