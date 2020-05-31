@@ -121,7 +121,9 @@ def choose(update, context):
         update.message.reply_text(text, parse_mode=ParseMode.MARKDOWN)
         if n == 25:
             break
-    update.message.reply_text(f'Which of those do you like?\nTell me the result number you want to download.')
+    update.message.reply_text(f'''Which of those do you like?\n
+Tell me the result number you want to download!\n
+Type /cancel to cancel search.''')
 
 
     return SENT
@@ -136,7 +138,7 @@ def sent(update, context):
         logger.info(f"{user.first_name} {user.last_name} selected option {chosen} from list.")
         print(s_type, s_value, chosen)
         url = get_book_link(search_book(by=s_type, value=s_value)[chosen])
-        update.message.reply_text(f'Here you go {user.first_name}, here is your link!\n\n{url}\n\nType /cancel to cancel search.')
+        update.message.reply_text(f'Here you go {user.first_name}, here is your link!\n\n{url}')
         return ConversationHandler.END
     else:
         logger.info(f"{user.first_name} {user.last_name} canceled the conversation.")
