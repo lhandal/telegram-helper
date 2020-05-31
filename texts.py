@@ -9,5 +9,6 @@ You can control me by sending these commands:
 /books - download books for free 📚
 /gangsta - translate any text into sounding ghetto 🔫
 /doggo - get a random happy dog 🐶
+/rateme - send a picture of yourself 🔥
 '''
     return start_text
