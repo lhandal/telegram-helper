@@ -165,7 +165,7 @@ def main():
         states={
             SEARCH_TYPE: [MessageHandler(Filters.regex('^(Title|Author)$'), search_type)],
 
-            CHOoSE: [MessageHandler(Filters.text, choose)],
+            CHOOSE: [MessageHandler(Filters.text, choose)],
 
             SENT: [MessageHandler(Filters.text, sent)],
 
