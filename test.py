@@ -95,7 +95,7 @@ def search_type(update, context):
     logger.info(f"Search type of {user.first_name} {user.last_name} {update.message.text}")
     global s_type
     s_type = update.message.text.lower()
-    return TYPE
+    return CHOOSE
 
 
 def choose(update, context):
@@ -124,7 +124,7 @@ def choose(update, context):
     update.message.reply_text(f'Which of those do you like?\nTell me the result number you want to download.')
 
 
-    return CHOSEN
+    return SENT
 
 
 def sent(update, context):
@@ -165,9 +165,9 @@ def main():
         states={
             SEARCH_TYPE: [MessageHandler(Filters.regex('^(Title|Author)$'), search_type)],
 
-            TYPE: [MessageHandler(Filters.text, choose)],
+            CHOOSE: [MessageHandler(Filters.text, choose)],
 
-            CHOSEN: [MessageHandler(Filters.text, sent)],
+            SENT: [MessageHandler(Filters.text, sent)],
 
             ROAST: [MessageHandler(Filters.photo, roast)]
         },
