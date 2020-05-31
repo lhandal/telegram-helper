@@ -22,14 +22,14 @@ def start(update, context):
     user_id, name, lastname, username = user.id, user.first_name, user.last_name, user.username
     text = start_text(name)
     context.bot.send_message(chat_id=chat_id, text=text)
-    logger.info(f"{user.first_name} selected option /start.")
+    logger.info(f"{user.first_name} {user.last_name} selected option /start.")
 
 def doggo(update, context):
     user = update.message.from_user
     url = get_image_url()
     chat_id = update.message.chat_id
     context.bot.send_photo(chat_id=chat_id, photo=url)
-    logger.info(f"{user.first_name} selected option /doggo.")
+    logger.info(f"{user.first_name} {user.last_name} selected option /doggo.")
 
 
 def gangsta(update, context):
@@ -40,11 +40,11 @@ def gangsta(update, context):
     elif not context.args:
         text = 'Please add your text after /gangsta\ni.e. /gangsta How are you?'
         context.bot.send_message(chat_id=update.effective_chat.id, text=text)
-    logger.info(f"{user.first_name} selected option /gangsta.")
+    logger.info(f"{user.first_name} {user.last_name} selected option /gangsta.")
 
 def rateme(update, context):
     user = update.message.from_user
-    logger.info(f"{user.first_name} selected option /roast.")
+    logger.info(f"{user.first_name} {user.last_name} selected option /rateme.")
     update.message.reply_text('Send me a photo of yourself! 👀',
                               reply_markup=ReplyKeyboardRemove())
     return ROAST
@@ -53,7 +53,7 @@ def roast(update, context):
     user = update.message.from_user
     photo_file = update.message.photo[-1].get_file()
     photo_file.download('user_photo.jpg')
-    logger.info("Photo of %s: %s", user.first_name, 'user_photo.jpg')
+    logger.info(f"{user.first_name} {user.last_name} sent: 'user_photo.jpg')
     roast = get_roast()
     update.message.reply_text(f'{user.first_name}, {roast}')
 
@@ -78,7 +78,7 @@ def inline_caps(update, context):
 def books(update, context):
     user = update.message.from_user
     reply_keyboard = [['Title', 'Author']]
-    logger.info(f"{user.first_name} selected option /books.")
+    logger.info(f"{user.first_name} {user.last_name} selected option /books.")
     update.message.reply_text(
         f'''I can help you download most books! 📚
 'Do you want to search by *title* or *author*?''',
@@ -92,7 +92,7 @@ def search_type(update, context):
     user = update.message.from_user
     update.message.reply_text(f'Thank you!\nPlease type the *{update.message.text.lower()}* then.',
                               parse_mode=ParseMode.MARKDOWN)
-    logger.info("Search type of %s: %s", user.first_name, update.message.text)
+    logger.info(f"Search type of {user.first_name} {user.last_name} {update.message.text})
     global s_type
     s_type = update.message.text.lower()
     return TYPE
@@ -100,7 +100,7 @@ def search_type(update, context):
 
 def choose(update, context):
     user = update.message.from_user
-    logger.info("Query of %s: %s", user.first_name, update.message.text)
+    logger.info(f"Query of {user.first_name} {user.last_name}: {update.message.text})
     results = filter_results(search_book(by=s_type, value=update.message.text))
     global s_value
     s_value = update.message.text
@@ -131,7 +131,7 @@ def sent(update, context):
     user = update.message.from_user
     global chosen
     chosen = int(re.findall(r'\d+', update.message.text)[0]) - 1
-    logger.info(f"{user.first_name} selected option {chosen} from list.")
+    logger.info(f"{user.first_name} {user.last_name} selected option {chosen} from list.")
     print(s_type, s_value, chosen)
     url = get_book_link(search_book(by=s_type, value=s_value)[chosen])
 
@@ -142,7 +142,7 @@ def sent(update, context):
 
 def cancel(update, context):
     user = update.message.from_user
-    logger.info("User %s canceled the conversation.", user.first_name)
+    logger.info(f"User {user.first_name} {user.last_name} canceled the conversation.")
     update.message.reply_text('Bye! Let me know if you need anything else!.',
                               reply_markup=ReplyKeyboardRemove())
 
