@@ -139,8 +139,8 @@ def sent(update, context):
     if update.message.text != '/cancel':
         global chosen
         chosen = int(re.findall(r'\d+', update.message.text)[0]) - 1
-        logger.info(f"{user.first_name} {user.last_name} selected option {chosen} from list.")
-        print(s_type, s_value, chosen)
+        logger.info(f"{user.first_name} {user.last_name} selected option {chosen+1} from list.")
+        print(s_type, s_value, chosen+1)
         url = get_book_link(search_book(by=s_type, value=s_value)[chosen])
         update.message.reply_text(f'Here you go {user.first_name}, here is your link!\n\n{url}')
         return ConversationHandler.END
