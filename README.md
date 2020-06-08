@@ -61,8 +61,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="images/probs.jpg">
-    <img src="images/probs.jpg" width="1000">
+  <a href="images/probs.png">
+    <img src="images/probs.png" width="1000">
   </a>
   </p>
 </p>
@@ -116,7 +116,7 @@ To get a local copy up and running follow these simple steps.
 3. Create a blank Telegram bot with [BotFather](https://telegram.me/BotFather)
 
     This step is very simple to do, just go to the link above, talk to the botfather bot and follow the stps.
-    More info and detailed steps in [this Medium article](https://medium.com/shibinco/create-a-telegram-bot-using-botfather-    and-get-the-api-token-900ba00e0f39)
+    More info and detailed steps in [this Medium article](https://medium.com/shibinco/create-a-telegram-bot-using-botfather-and-get-the-api-token-900ba00e0f39)
 
 4. Copy the token provided by your new bot into the [credentials.py](credentials.py) script. 
 
