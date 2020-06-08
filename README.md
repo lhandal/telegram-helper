@@ -105,39 +105,39 @@ To get a local copy up and running follow these simple steps.
 ### Installation
  
 1. Clone the repo
-```shell script
-$ git clone https://github.com/lhandal/telegram-helper.git
-```
+    ```shell script
+    $ git clone https://github.com/lhandal/telegram-helper.git
+    ```
 2. Install required packages
-```shell script
-$ pip install -r requirements.txt
-```
+    ```shell script
+    $ pip install -r requirements.txt
+    ```
 
 3. Create a blank Telegram bot with [BotFather](https://telegram.me/BotFather)
 
-This step is very simple to do, just go to the link above, talk to the botfather bot and follow the stps.
-More info and detailed steps in [this Medium article](https://medium.com/shibinco/create-a-telegram-bot-using-botfather-and-get-the-api-token-900ba00e0f39)
+    This step is very simple to do, just go to the link above, talk to the botfather bot and follow the stps.
+    More info and detailed steps in [this Medium article](https://medium.com/shibinco/create-a-telegram-bot-using-botfather-    and-get-the-api-token-900ba00e0f39)
 
 4. Copy the token provided by your new bot into the [credentials.py](credentials.py) script. 
 
 5. Create a blank app in [Heroku](https://dashboard.heroku.com/new-app)
 
 6. Deploy the app in Heroku
-```shell script
-$ heroku login #login
-```
-```shell script
-$ git init
-$ heroku git:remote -a {heroku-project-name}
-```
-```shell script
-$ git add .
-$ git commit -m "Final Commit Deploying to Heroku"
-$ git push heroku master
-```
+    ```shell script
+    $ heroku login #login
+    ```
+    ```shell script
+    $ git init
+    $ heroku git:remote -a {heroku-project-name}
+    ```
+    ```shell script
+    $ git add .
+    $ git commit -m "Final Commit Deploying to Heroku"
+    $ git push heroku master
+    ```
 
-In my case I used GitHub CI/CD offered by heroku to redeploy the app with every commit to my repo.
-You can configure this inside the app preferences!
+    In my case I used GitHub CI/CD offered by heroku to redeploy the app with every commit to my repo.
+    You can configure this inside the app preferences!
 
 
 7. Go to the [kaffeine heroku](http://kaffeine.herokuapp.com/) app and paste the name of your app in there.
@@ -147,8 +147,8 @@ If you don't know, after 30 minutes of inactivity, Heroku puts your app to _slee
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-To use this bot click on this [LINK](https://telegram.me/le_helper_bot) or simply search for *@le_helper_bot*
-in Telegram and press the */start* command. After that you can start talking with my bot.
+To use this bot click on this [LINK](https://telegram.me/le_helper_bot) or simply search for **@le_helper_bot**
+in Telegram and press the **/start** command. After that you can start talking with my bot.
 
 
 
@@ -156,12 +156,12 @@ in Telegram and press the */start* command. After that you can start talking wit
 
 The implemented commands are:
 
-- */books* - helps you find and download books online in a guided conversation
-- */doggo* - sends you a different random pic of a happy dog every time
-- */gangsta* - converts anything you send into sounding ghetto
-- */rateme* - compliments/mocks you based on the picture you send 
-- */capitalize* - converts everything you send into capital letters 
-(this can be used in outside convos as well, just type *@le_helper_bot* in other groups or conversations and the option pops up!)
+- `/books` - helps you find and download books online in a guided conversation
+- `/doggo` - sends you a different random pic of a happy dog every time
+- `/gangsta` - converts anything you send into sounding ghetto
+- `/rateme` - compliments/mocks you based on the picture you send 
+- `/capitalize` - converts everything you send into capital letters 
+(this can be used in outside convos as well, just type **@le_helper_bot** in other groups or conversations and the option pops up!)
 
 <!-- ROADMAP -->
 ## Roadmap
