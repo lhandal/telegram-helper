@@ -63,7 +63,7 @@ def filter_results(search_results):
 
 def get_book_link(user_pick):
     if user_pick['Mirror_2']:
-        r = requests.get(user_pick['Mirror_2'])
+        r = requests.get(user_pick['Mirror_1'])
     elif not user_pick['Mirror_2']:
         r = requests.get(user_pick['Mirror_1'])
     soup = BeautifulSoup(r.content, features="lxml")
