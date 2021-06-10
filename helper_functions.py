@@ -62,10 +62,10 @@ def filter_results(search_results):
     return filtered_results
 
 def get_book_link(user_pick):
-    if user_pick['Mirror_2']:
+    if user_pick['Mirror_1']:
         r = requests.get(user_pick['Mirror_1'])
-    elif not user_pick['Mirror_2']:
-        r = requests.get(user_pick['Mirror_1'])
+    elif not user_pick['Mirror_1']:
+        r = requests.get('http://libgen.lc/' + user_pick['Mirror_2'])
     soup = BeautifulSoup(r.content, features="lxml")
     url = soup.find('a', href=True)['href']
     return url
