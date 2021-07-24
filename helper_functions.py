@@ -70,18 +70,8 @@ def get_book_link(user_pick):
     url = soup.find('a', href=True)['href']
     return url
 
-def get_roast():
-    if randint(0,3) == 0:
-        url ='http://private-anon-3c099af7c5-insultgenerator.apiary-mock.com/compliments'
-        const = 'compliments'
-        emoji = '😍'
-    else:
-        url ='http://private-anon-3c099af7c5-insultgenerator.apiary-mock.com/insults'
-        const = 'insults'
-        emoji = '😂'
-    results = requests.get(url).json()
-    try:
-        roast = results[randint(0,len(results))][const][0][const[:-1]+'_no_name'].lower()+'! '+emoji
-    except:
-        roast = results[randint(0,len(results))][const][0][const[:-1]+'_no_name'].lower()+'! '+emoji
+def get_roast(name):
+    url ='https://insult.mattbas.org/api/insult.txt'
+    results = requests.get(url).text
+    roast = f'{name}, {results.lower()}.'
     return roast
