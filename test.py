@@ -55,7 +55,7 @@ def roast(update, context):
     photo_file.download('user_photo.jpg')
     logger.info(f"{user.first_name} {user.last_name} sent: 'user_photo.jpg'")
     roast = get_roast(user.first_name)
-    update.message.reply_text(f'{user.first_name}, {roast}')
+    update.message.reply_text(f'{user.first_name}, {roast.lower()}.')
 
     return ConversationHandler.END
 

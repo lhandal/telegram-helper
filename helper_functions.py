@@ -70,8 +70,7 @@ def get_book_link(user_pick):
     url = soup.find('a', href=True)['href']
     return url
 
-def get_roast(name):
+def get_roast():
     url ='https://insult.mattbas.org/api/insult.txt'
-    results = requests.get(url).text
-    roast = f'{name}, {results.lower()}.'
+    roast = requests.get(url).text
     return roast
